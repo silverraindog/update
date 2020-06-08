@@ -63,6 +63,6 @@ def iparemove():
 
 def ipainstall():
         for host in ipaclients:
-            print("Going to join {} to SARGUS.NET.ZA".format(host))
-            result = Connection(host).run('ipa-client-install --mkhomedir --realm=SARGUS.NET.ZA --domain=sargus.net.za --server=ipa.sargus.net.za --hostname=$(hostname)', pty=True)
+            print("Going to join {} to REALM".format(host))
+            result = Connection(host).run('ipa-client-install --mkhomedir --realm=REALM --domain=domain --server=ipamaster --hostname=$(hostname)', pty=True)
             print("{}: {}".format(host, result.stdout.strip()))
