@@ -11,15 +11,7 @@ __status__ = "Production"
 from config import *
 from fabric import Connection
 
-
-def pacmanupdate():
-    for host in arch:
-        print("Going to check updates on {}".format(host))
-        result = Connection(host).run('yes | pacman -Suy', pty=True)
-        print("{}: {}".format(host, result.stdout.strip()))
-
-
-def aptcheckupdate ():
+def checkupdate ():
         for host in debian:
             print("Going to check updates on {}".format(host))
             result = Connection(host).run('apt update', pty=True)
@@ -28,7 +20,7 @@ def aptcheckupdate ():
 
 
 
-def aptlistupgrade ():
+def listupgrade ():
         for host in debian:
             print("Going to list updates on {}".format(host))
             result = Connection(host).run('apt list --upgradable', pty=True)
@@ -36,14 +28,14 @@ def aptlistupgrade ():
 
 
 
-def aptupdatesystem ():
+def updatesystem ():
         for host in debian:
             print("Going to update on {}".format(host))
             result = Connection(host).run('apt -y dist-upgrade', pty=True)
             print("{}: {}".format(host, result.stdout.strip()))
 
 
-def aptremoveupdate():
+def removeupdate():
         for host in debian:
             print("Going to remove updates on {}".format(host))
             result = Connection(host).run('apt autoremove -y', pty=True)
@@ -55,14 +47,8 @@ def updatecentos():
             result = Connection(host).run('yum update -y', pty=True)
             print("{}: {}".format(host, result.stdout.strip()))
 
-def iparemove():
-        for host in ipaclients:
-            print("Going to remove ipa on {}".format(host))
-            result = Connection(host).run('ipa-client-install --uninstall', pty=True)
-            print("{}: {}".format(host, result.stdout.strip()))
-
-def ipainstall():
-        for host in ipaclients:
-            print("Going to join {} to REALM".format(host))
-            result = Connection(host).run('ipa-client-install --mkhomedir --realm=REALM --domain=domain --server=ipamaster --hostname=$(hostname)', pty=True)
+def archlinux():
+        for host in arch:
+            print("Going to install updates on {}".format(host))
+            result = Connection(host).run('yes | pacman -Suy', pty=True)
             print("{}: {}".format(host, result.stdout.strip()))

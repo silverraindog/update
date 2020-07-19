@@ -9,8 +9,7 @@ __maintainer__ = "Angus Robinson"
 __email__ = "angus@sargus.net.za"
 __status__ = "Production"
 
-servers = [""]
-isp = [""]
-debian = [""]
-centos = [""]
-ipaclients = [""]
+
+debian = ["cronus.sargus.net.za", "loki.sargus.net.za", "hoplite.sargus.net.za", "vpn.sargus.net.za"]
+centos = ["centos.sargus.net.za"]
+arch= ["192.168.0.35", "192.168.0.25", "192.168.0.45"]

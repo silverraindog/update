@@ -28,33 +28,32 @@ parser.add_argument("--centos", help="update centos systems",
 parser.add_argument("--all", help="Run all modules",
                     action="store_true")
 args = parser.parse_args()
-
-if args.pacmanupdate:
-    upodate = get_logger("{}".format(pacmanupdate()))
-    upodate.info('Checking updates on 'host'')
-
 if args.update:
-    upodate = get_logger("{}".format(aptcheckupdate()))
+    upodate = get_logger("{}".format(checkupdate()))
     upodate.info('Checking updates on systems running Debian')
 
 if args.list:
-    update = get_logger("{}".format(aptlistupgrade()))
+    update = get_logger("{}".format(listupgrade()))
     update.info('Checking upgrade list for Debian system')
 
 
 if args.updatesystem:
-    update = get_logger("{}".format(aptupdatesystem()))
+    update = get_logger("{}".format(updatesystem()))
     update.info('Installing updates on systems running Debian')
 
 
 if args.remove:
-    update = get_logger("{}".format(aptremoveupdate()))
+    update = get_logger("{}".format(removeupdate()))
     update.info('Removing obsolete programs on Debian systems')
 
 
 if args.centos:
     update = get_logger("{}".format(updatecentos()))
     update.info('Checking update to systems running Centos')
+    
+ if args.arch:
+    update = get_logger("{}".format(archlinux()))
+    update.info('Checking update to systems running Arch Linux')   
 
 if args.all:
     upodate = get_logger("{}".format(checkupdate()))
@@ -67,3 +66,5 @@ if args.all:
     update.info('Removing obsolete programs on Debian systems')
     update = get_logger("{}".format(updatecentos()))
     update.info('Checking update to systems running Centos')
+    update = get_logger("{}".format(archlinux()))
+    update.info('Installing updates on systems running Arch Linux')
